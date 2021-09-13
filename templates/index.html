@@ -14,6 +14,19 @@
 
   <h1>Welcome, {{ request.user.username }}!</h1> 
 
+  {% for tweet in tweets %}
+
+  <div class="card">
+    <h5 class="card-header">{{ tweet.user.username }}</h5>
+    <div class="card-body">
+      <h5 class="card-title">{{ tweet.body }}</h5>
+      <p class="card-text">{{ tweet.post_created }}</p>
+      <a href="#" class="btn btn-primary">Go somewhere</a>
+    </div>
+  </div>
+
+  {% endfor %}
+
   {% endblock %}
 </body>
 

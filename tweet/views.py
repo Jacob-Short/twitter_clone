@@ -15,8 +15,24 @@ def index_view(request):
 
 
     # all the tweets
-    # tweets = Tweet.objects.all().order_by('-id')
+    tweets = Tweet.objects.all().order_by('-id')
 
 
-    context = {}
+    context = {'tweets': tweets}
     return render(request, 'index.html', context)
+
+
+@login_required
+def create_tweet_view(request):
+    if request.method == 'POST':
+        form = CreateTweetForm(request.POST)
+        if form.is_valid():
+            data = form.cleaned_data
+            tweet = Tweet.objects.create(
+                body=data['body'],
+                user=request.user,
+            )
+            return HttpResponseRedirect(reverse('home'))
+    form = CreateTweetForm()
+    context = {'form': form}
+    return render(request, 'generic_form.html', context)

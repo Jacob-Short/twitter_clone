@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from tweet.views import index_view
+from tweet.views import index_view, create_tweet_view
 from authentication.views import signup_view, login_view, signup_view
 
 urlpatterns = [
@@ -24,4 +24,5 @@ urlpatterns = [
     path('login/', login_view, name='login'),
     path('signup/', signup_view, name='signup'),
     path('logout/', signup_view, name='logout'),
+    path('create_tweet/', create_tweet_view, name='create_tweet'),
 ]
