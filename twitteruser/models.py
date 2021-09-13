@@ -4,7 +4,7 @@ from django.db.models.deletion import CASCADE
 from django.utils import timezone
 
 
-class MyUser(AbstractUser):
+class TwitterUser(AbstractUser):
     name = models.CharField(max_length=50)
     following = models.ManyToManyField('self', symmetrical=False, blank=True)
 

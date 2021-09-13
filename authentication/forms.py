@@ -1,4 +1,4 @@
-from twitteruser.models import MyUser
+from twitteruser.models import TwitterUser
 from django import forms
 
 

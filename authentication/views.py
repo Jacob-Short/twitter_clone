@@ -5,7 +5,7 @@ from django.conf import settings
 from django import forms
 from tweet.models import Tweet
 from authentication.forms import LoginForm, SignUpForm
-from twitteruser.models import MyUser
+from twitteruser.models import TwitterUser
 
 
 def signup_view(request):
@@ -13,7 +13,7 @@ def signup_view(request):
         form = SignUpForm(request.POST)
         if form.is_valid():
             data = form.cleaned_data
-            user = MyUser.objects.create_user(
+            user = TwitterUser.objects.create_user(
                 username=data['username'], password=data['password'])
         return HttpResponseRedirect(reverse('home'))
     form = SignUpForm()

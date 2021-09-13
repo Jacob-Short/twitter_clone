@@ -12,14 +12,18 @@
 <body>
   {% block content %}
 
-  <h1>Welcome, {{ request.user.username }}!</h1> 
+  <h1>Welcome, {{ request.user.username }}!</h1>
 
   {% for tweet in tweets %}
 
   <div class="card">
-    <h5 class="card-header">{{ tweet.user.username }}</h5>
+    <a href='/user/{{tweet.user.id}}'>
+      <h5 class="card-header">{{ tweet.user.username }}</h5>
+    </a>
     <div class="card-body">
-      <h5 class="card-title">{{ tweet.body }}</h5>
+      <a href='/tweet/{{tweet.id}}'>
+        <h5 class="card-title">{{ tweet.body }}</h5>
+      </a>
       <p class="card-text">{{ tweet.post_created }}</p>
       <a href="#" class="btn btn-primary">Go somewhere</a>
     </div>

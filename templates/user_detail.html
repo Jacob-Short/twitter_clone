@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Detail</title>
+</head>
+
+<body>
+    {% block content %}
+    <div class="card">
+        <div class="card-header">
+            Users Profile: {{ users_page.username }}
+        </div>
+        <div class="card-body">
+            <blockquote class="blockquote mb-0"></blockquote>
+            <p>Tweets Count: {{ tweets.count }}</p>
+            <p>Following Count: {{ user.following.count }}</p>
+            {% if user_to_follow.username != request.user.username %}
+            <footer class="blockquote-footer">
+                <a href="/follow/{{user_to_follow.id}}">
+                    <button type="button" class="btn btn-primary">Follow</button>
+                </a>
+                <a href="/unfollow/{{user_to_follow.id}}">
+                    <button type="button" class="btn btn-danger">Unfollow</button>
+                </a>
+            </footer>
+            {% endif %}
+            </blockquote>
+        </div>
+    </div>
+    {% for tweet in tweets %}
+    <div class="card text-center">
+        <div class="card-header">{{ tweet.id }}</div>
+        <div class="card-body">
+            <h5 class="card-title">{{ tweet }}</h5>
+            <a href="#" class="btn btn-primary">{{ tweet.user.username }}</a>
+        </div>
+        <div class="card-footer text-muted">{{ tweet.post_created }}</div>
+    </div>
+    {% endfor %}
+
+    {% endblock %}
+</body>
+
+</html>

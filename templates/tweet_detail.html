@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tweet Detail</title>
+</head>
+
+<body>
+    {% block content %}
+    <div class="card">
+        <div class="card-header">
+      {{ tweet.id }}
+            
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">{{ tweet }}</h5>
+            <a href="/user/{{tweet.user.id}}" class="btn btn-primary">{{ tweet.user.username }}</a>
+            <h3>{{ tweet.post_created }}</h3>
+        </div>
+    </div>
+    {% endblock %}
+</body>
+
+</html>

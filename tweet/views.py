@@ -2,7 +2,7 @@ from django.shortcuts import render,HttpResponseRedirect, reverse
 from django.contrib.auth.decorators import login_required
 from tweet.models import Tweet
 from tweet.forms import CreateTweetForm
-from twitteruser.models import MyUser
+from twitteruser.models import TwitterUser
 import re
 
 @login_required(login_url='/login/')
@@ -36,3 +36,9 @@ def create_tweet_view(request):
     form = CreateTweetForm()
     context = {'form': form}
     return render(request, 'generic_form.html', context)
+
+
+def tweet_detail(request, id):
+    tweet = Tweet.objects.get(id=id)
+    context = {'tweet': tweet}
+    return render(request, 'tweet_detail.html', context)
